@@ -1,0 +1,19 @@
+{
+  "name": "aibackend",
+  "version": "1.0.0",
+  "description": "Simple backend server that connects to Gemini API for terminal-based queries",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["gemini", "api", "backend", "ai"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "@google/generative-ai": "^0.2.1",
+    "dotenv": "^16.3.1"
+  }
+}
