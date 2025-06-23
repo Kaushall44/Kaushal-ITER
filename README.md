@@ -81,4 +81,4 @@ This backend can be deployed to any platform that supports Node.js:
 - Heroku
 - VPS/Cloud instances
 
-Make sure to set the `GEMINI_API_KEY` environment variable in your deployment platform.
+Make sure to set the `GEMINI_API_KEY` environment variable in your deployment platform!
