@@ -1,6 +1,13 @@
-# Gemini Backend Server
+# AI Backend Server (Groq Edition)
 
-A simple Express.js backend server that connects to Google's Gemini API for terminal-based AI queries.
+A simple Express.js backend server that connects to **Groq API** (`llama-3.3-70b-versatile`) for ultra-fast, terminal-based code generation.
+
+## Features
+
+- **Groq API Integration**: Uses the fast Llama 3 models.
+- **Client Script**: `ask.js` handles output formatting and prevents truncation.
+- **Server-Side File Creation**: Can save generated code correctly to a file on the server.
+- **Vercel Ready**: Includes configuration for easy deployment.
 
 ## Setup
 
@@ -10,10 +17,10 @@ A simple Express.js backend server that connects to Google's Gemini API for term
    ```
 
 2. **Configure API key:**
-   - Copy `.env.example` to `.env`
-   - Add your Gemini API key to the `.env` file:
+   - Create `.env` file
+   - Add your Groq API key:
    ```
-   GEMINI_API_KEY=your-actual-api-key-here
+   GROQ_API_KEY=your_groq_api_key
    ```
 
 3. **Start the server:**
@@ -23,62 +30,31 @@ A simple Express.js backend server that connects to Google's Gemini API for term
 
 ## Usage
 
-### Option 1: Simple Windows Batch Script (Recommended)
-Use the included `ask.bat` script for clean output:
+### 1. Terminal Query (Recommended)
+Use the included `ask.js` script to get clean, full output:
 
-```cmd
-ask "What is artificial intelligence?"
-ask "Write a Python hello world program"
-ask "Explain quantum computing in simple terms"
-```
-
-### Option 2: Direct curl (shows HTTP headers)
 ```bash
-curl "http://localhost:3000/ask?q=What is artificial intelligence?"
+node ask.js "write a factorial function in python"
 ```
 
-### Option 3: Clean curl (silent mode)
+### 2. Save Code to File (Server-Side)
+To save the generated code directly to a file on the server (or local disk if running locally):
+
 ```bash
-curl -s "http://localhost:3000/ask?q=What is artificial intelligence?"
+curl "http://localhost:3000/ask?q=write%20a%20hello%20world%20in%20python&filename=hello.py"
 ```
 
-### Remote Server Query
-```bash
-curl -s "http://your-domain.com:3000/ask?q=Write a hello world program in Python"
-```
+*Note: On Vercel, this will write to the ephemeral server file system, so you won't be able to access the file easily unless you return it. For Vercel deployments, use the terminal query method or `curl > file.py`.*
+
+### 3. Vercel Deployment
+
+1. Push this repository to GitHub.
+2. Import the project into Vercel.
+3. Add the environment variable `GROQ_API_KEY` in Vercel project settings.
+4. Redeploy.
 
 ## API Endpoints
 
 - `GET /` - Health check endpoint
-- `GET /ask?q=question` - Main query endpoint that returns AI response as plain text
-
-## Response Format
-
-The server returns plain text responses for clean terminal output. No JSON parsing required.
-
-## Features
-
-- **Auto-model detection**: Automatically finds the correct Gemini model for your API key
-- **Multiple model support**: Tries different model names (gemini-1.5-flash, gemini-1.5-pro, etc.)
-- **Clean terminal output**: Plain text responses without HTTP headers
-- **Comprehensive error handling**: Invalid API keys, quota limits, safety filters
-- **Windows batch script**: Simple `ask.bat` for easy querying
-
-## Error Handling
-
-The server handles various error scenarios:
-- Missing question parameter
-- Invalid API key
-- API quota exceeded
-- Content blocked by safety filters
-- General API errors
-
-## Deployment
-
-This backend can be deployed to any platform that supports Node.js:
-- Vercel
-- Railway
-- Heroku
-- VPS/Cloud instances
-
-Make sure to set the `GEMINI_API_KEY` environment variable in your deployment platform!
+- `GET /ask?q=question` - Returns plain text response
+- `GET /ask?q=question&filename=name.ext` - Saves code to file (returns confirmation message)

@@ -8,12 +8,17 @@
     "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["gemini", "api", "backend", "ai"],
+  "keywords": [
+    "gemini",
+    "api",
+    "backend",
+    "ai"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "@google/generative-ai": "^0.2.1",
+    "openai": "^4.24.1",
     "dotenv": "^16.3.1"
   }
 }
