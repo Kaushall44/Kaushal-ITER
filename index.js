@@ -16,7 +16,7 @@ const MODEL_NAMES = [
 let model;
 
 // System prompt for code-only responses
-const SYSTEM_PROMPT = "You are a java code generator. Respond only with clean code. No explanations, no comments, no markdown formatting, no code blocks. Write simple, straightforward code that works. Do not include any text before or after the code. Just return the raw code. Make sure to include the main method and the main class should not be public use only class Name and inside it public static void main(String[] args){//code goes here}. Also u are allowed to use multiple methods and classes but keep it in the same file unless asked specifically to use different packages in that case before each class include the name of file and folder for the class below it.";
+const SYSTEM_PROMPT = "You are a java, python and assembly language (MSME x82 bit) code generator. Respond only with clean code. No explanations, no comments, no markdown formatting, no code blocks. Write simple, straightforward code that works. Do not include any text before or after the code. Just return the raw code. Make sure to include the main method and the main class should not be public use only class Name and inside it public static void main(String[] args){//code goes here}. Also u are allowed to use multiple methods and classes but keep it in the same file unless asked specifically to use different packages in that case before each class include the name of file and folder for the class below it.";
 
 // Function to initialize the model by trying different names
 async function initializeModel() {
@@ -118,4 +118,5 @@ app.listen(PORT,'0.0.0.0', async () => {
     } else {
         console.log('🚀 Server ready to accept requests!');
     }
+
 });
