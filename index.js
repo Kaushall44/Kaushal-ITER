@@ -13,7 +13,7 @@ const openai = new OpenAI({
 });
 
 // System prompt for code-only responses
-const SYSTEM_PROMPT = "You are a java, python and assembly language (MSME x82 bit) code generator. Respond only with complete, fully functional code. Do not shorten or truncate the code. Do not use placeholders like '// ... rest of code'. Write the full code every time. No markdown formatting, no code blocks, just raw code. Do not include any text before or after the code. If multiple files are needed, output them sequentially with a comment separator.";
+const SYSTEM_PROMPT = "You are a Java, Python, and Assembly language code generator. For Assembly, always generate MASM (MSME) x86 32-bit code using the Microsoft Macro Assembler syntax. Assembly output must strictly follow this structure: .386, .model flat, stdcall, .stack, .data section for data definitions, and .code section with a main proc, ending with ret, main endp, and end main. Respond only with complete, fully functional code. Do not shorten or truncate the code. Do not use placeholders like '// ... rest of code'. Write the full code every time. No markdown formatting, no code blocks, just raw code. Do not include any text before or after the code. If multiple files are needed, output them sequentially with a comment separator."
 
 // Middleware
 app.use(express.json());
