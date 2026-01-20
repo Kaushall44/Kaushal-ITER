@@ -1,6 +1,6 @@
 const express = require('express');
 const OpenAI = require('openai');
-const fs = require('fs');
+
 require('dotenv').config();
 
 const app = express();
@@ -51,8 +51,9 @@ app.get('/ask', async (req, res) => {
 
         const filename = req.query.filename;
         if (filename) {
-            fs.writeFileSync(filename, text);
-            res.send(`Code saved to ${filename}`);
+            res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+            res.setHeader('Content-Type', 'text/plain');
+            res.send(text);
         } else {
             // Return plain text response for clean terminal output
             res.set('Content-Type', 'text/plain');
